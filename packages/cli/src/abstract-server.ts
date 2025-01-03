@@ -125,6 +125,7 @@ export abstract class AbstractServer {
 		});
 
 		const { connectionState } = Db;
+		this.app.use(corsMiddleware);
 		this.app.use((_req, res, next) => {
   // Allow iframe embedding from any domain
   res.setHeader('X-Frame-Options', 'ALLOWALL');
