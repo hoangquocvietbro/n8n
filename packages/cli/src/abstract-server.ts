@@ -7,7 +7,7 @@ import type { Server } from 'http';
 import isbot from 'isbot';
 import { Logger } from 'n8n-core';
 import { Container, Service } from 'typedi';
-var cors = require('cors')
+import cors from 'cors';
 
 import config from '@/config';
 import { N8N_VERSION, TEMPLATES_DIR, inDevelopment, inTest } from '@/constants';
@@ -63,7 +63,7 @@ export abstract class AbstractServer {
 	constructor() {
 		this.app = express();
 		this.app.disable('x-powered-by');
-
+		
 		this.app.engine('handlebars', expressHandlebars({ defaultLayout: false }));
 		this.app.set('view engine', 'handlebars');
 		this.app.set('views', TEMPLATES_DIR);
@@ -99,6 +99,7 @@ export abstract class AbstractServer {
 		setupExpressErrorHandler(app);
 	}
 
+	this.app.use(cors());
 	private setupCommonMiddlewares() {
 		// Compress the response data
 		this.app.use(compression());
@@ -126,7 +127,7 @@ export abstract class AbstractServer {
 		});
 
 		const { connectionState } = Db;
-		this.app.use(cors());
+	
 		this.app.use((_req, res, next) => {
   // Allow iframe embedding from any domain
   res.setHeader('X-Frame-Options', 'ALLOWALL');
