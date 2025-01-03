@@ -99,8 +99,9 @@ export abstract class AbstractServer {
 	}
 
 
+	this.app.use(corsMiddleware);
 	private setupCommonMiddlewares() {
-		this.app.use(corsMiddleware);
+		
 		// Compress the response data
 		this.app.use(compression());
 
@@ -109,7 +110,7 @@ export abstract class AbstractServer {
 	}
 
 	private setupDevMiddlewares() {
-		this.app.use(corsMiddleware);
+		
 	}
 
 	protected setupPushServer() {}
