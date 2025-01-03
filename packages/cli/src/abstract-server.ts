@@ -7,7 +7,7 @@ import type { Server } from 'http';
 import isbot from 'isbot';
 import { Logger } from 'n8n-core';
 import { Container, Service } from 'typedi';
-import cors from 'cors'
+var cors = require('cors')
 
 import config from '@/config';
 import { N8N_VERSION, TEMPLATES_DIR, inDevelopment, inTest } from '@/constants';
