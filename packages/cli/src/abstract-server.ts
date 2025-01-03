@@ -126,6 +126,12 @@ export abstract class AbstractServer {
 
 		const { connectionState } = Db;
 		this.app.use((_req, res, next) => {
+  // Allow iframe embedding from any domain
+  res.setHeader('X-Frame-Options', 'ALLOWALL');
+
+  // Adjust Content Security Policy to allow all frame ancestors
+  res.setHeader('Content-Security-Policy', "frame-ancestors *");
+
 			if (connectionState.connected) {
 				if (connectionState.migrated) next();
 				else res.send('n8n is starting up. Please wait');
@@ -212,6 +218,12 @@ export abstract class AbstractServer {
 		// Block bots from scanning the application
 		const checkIfBot = isbot.spawn(['bot']);
 		this.app.use((req, res, next) => {
+			  // Allow iframe embedding from any domain
+  res.setHeader('X-Frame-Options', 'ALLOWALL');
+
+  // Adjust Content Security Policy to allow all frame ancestors
+  res.setHeader('Content-Security-Policy', "frame-ancestors *");
+
 			const userAgent = req.headers['user-agent'];
 			if (userAgent && checkIfBot(userAgent)) {
 				this.logger.info(`Blocked ${req.method} ${req.url} for "${userAgent}"`);
