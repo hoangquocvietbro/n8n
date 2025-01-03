@@ -64,7 +64,6 @@
     "tsc-watch": "^6.2.0",
     "turbo": "2.3.3",
     "typescript": "*",
-    "cors": "^2.8.5",
     "zx": "^8.1.4"
   },
   "pnpm": {
