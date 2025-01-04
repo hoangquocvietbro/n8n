@@ -57,7 +57,7 @@ function createAgent(
 
 	if (options?.auth && options?.user) {
 		const token = Container.get(AuthService).issueJWT(options.user, browserId);
-		agent.jar.setCookie(`${AUTH_COOKIE_NAME}=${token};Path=/; SameSite=None; Secure`);
+		agent.jar.setCookie(`${AUTH_COOKIE_NAME}=${token}`);
 	}
 	return agent;
 }
