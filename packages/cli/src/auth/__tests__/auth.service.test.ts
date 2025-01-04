@@ -126,8 +126,8 @@ describe('AuthService', () => {
 			expect(res.cookie).toHaveBeenCalledWith('n8n-auth', expect.any(String), {
 				httpOnly: true,
 				maxAge: 604800000,
-				sameSite: 'lax',
-				secure: false,
+				sameSite: 'none',
+				secure: true,
 			});
 		});
 	});
@@ -230,8 +230,8 @@ describe('AuthService', () => {
 			expect(res.cookie).toHaveBeenCalledWith('n8n-auth', expect.any(String), {
 				httpOnly: true,
 				maxAge: 604800000,
-				sameSite: 'lax',
-				secure: false,
+				sameSite: 'none',
+				secure: true,
 			});
 
 			const newToken = res.cookie.mock.calls[0].at(1);
