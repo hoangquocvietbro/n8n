@@ -76,8 +76,8 @@ describe('MeController', () => {
 				expect.objectContaining({
 					maxAge: expect.any(Number),
 					httpOnly: true,
-					sameSite: 'lax',
-					secure: false,
+					sameSite: 'none',
+					secure: true,
 				}),
 			);
 
@@ -262,8 +262,8 @@ describe('MeController', () => {
 				expect.objectContaining({
 					maxAge: expect.any(Number),
 					httpOnly: true,
-					sameSite: 'lax',
-					secure: false,
+					sameSite: 'none',
+					secure: true,
 				}),
 			);
 
